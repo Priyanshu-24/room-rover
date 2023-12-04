@@ -17,7 +17,7 @@ export interface ILocation {
   formattedAddress: string;
   city: string;
   state: string;
-  zipCode: string;
+  pincode: number;
   country: string;
 }
 
@@ -75,7 +75,7 @@ const roomSchema: Schema = new Schema({
     formattedAddress: String,
     city: String,
     state: String,
-    zipCode: String,
+    pincode: Number,
     country: String,
   },
   guestCapacity: {
