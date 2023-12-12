@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
+import ErrorHandler from "../utils/errorHandler";
 import Room from "../models/room";
 import { catchAsyncErrors } from "../middlewares/catchAsyncErrors";
 
@@ -31,7 +32,7 @@ export const getRoomDetails = catchAsyncErrors(
     const room = await Room.findById(params.id);
 
     if (!room) {
-      return NextResponse.json({ message: "Room not found" }, { status: 404 });
+      throw new ErrorHandler("Room not found", 400);
     }
 
     return NextResponse.json({ success: true, room });
@@ -44,7 +45,7 @@ export const updateRoomDetails = catchAsyncErrors(
     const body = await req.json();
 
     if (!room) {
-      return NextResponse.json({ message: "Room not found" }, { status: 404 });
+      throw new ErrorHandler("Room not found", 400);
     }
 
     room = await Room.findByIdAndUpdate(params.id, body, { new: true });
@@ -58,7 +59,7 @@ export const deleteRoom = catchAsyncErrors(
     let room = await Room.findById(params.id);
 
     if (!room) {
-      return NextResponse.json({ message: "Room not found" }, { status: 404 });
+      throw new ErrorHandler("Room not found", 400);
     }
 
     await room.deleteOne();
