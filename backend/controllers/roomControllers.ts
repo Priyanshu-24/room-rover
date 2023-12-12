@@ -6,7 +6,7 @@ import ErrorHandler from "../utils/errorHandler";
 import { catchAsyncErrors } from "../middlewares/catchAsyncErrors";
 
 export const allRooms = catchAsyncErrors(async (req: NextRequest) => {
-  const resPerPage: number = 8;
+  const resPerPage: number = 4;
 
   const { searchParams } = new URL(req.url);
 
@@ -16,12 +16,20 @@ export const allRooms = catchAsyncErrors(async (req: NextRequest) => {
     queryStr[key] = value;
   });
 
+  const roomsCount: number = await Room.countDocuments();
+
   const apiFilters = new APIFilters(Room, queryStr).search().filter();
 
-  const rooms: IRoom[] = await apiFilters.query;
+  let rooms: IRoom[] = await apiFilters.query;
+  const filteredRoomsCount: number = rooms.length;
+
+  apiFilters.pagination(resPerPage);
+  rooms = await apiFilters.query.clone();
 
   return NextResponse.json({
     success: true,
+    filteredRoomsCount,
+    roomsCount,
     resPerPage,
     rooms,
   });
