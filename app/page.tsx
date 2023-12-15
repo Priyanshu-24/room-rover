@@ -1,3 +1,7 @@
-export default function Home() {
-  return <main className="">Room Rover</main>;
-}
+import Home from "./components/Home";
+
+export const HomePage = () => {
+  return <Home />;
+};
+
+export default HomePage;
