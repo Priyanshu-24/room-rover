@@ -1,3 +1,3 @@
 export default function Home() {
-  return <main>Room Rover</main>;
+  return <main className="">Room Rover</main>;
 }

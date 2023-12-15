@@ -1,7 +1,9 @@
 import "./globals.css";
 
+import Footer from "./components/layout/Footer";
 import { GlobalProvider } from "./GlobalProvider";
 import Head from "./head";
+import Header from "./components/layout/Header";
 import { Inter } from "next/font/google";
 import type { Metadata } from "next";
 
@@ -21,7 +23,11 @@ export default function RootLayout({
     <html lang="en">
       <Head />
       <body className={inter.className}>
-        <GlobalProvider>{children}</GlobalProvider>
+        <GlobalProvider>
+          <Header />
+          {children}
+          <Footer />
+        </GlobalProvider>
       </body>
     </html>
   );
