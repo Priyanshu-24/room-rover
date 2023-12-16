@@ -10,6 +10,8 @@ export const allRooms = catchAsyncErrors(async (req: NextRequest) => {
 
   const { searchParams } = new URL(req.url);
 
+  throw new ErrorHandler("Error aaya h", 400);
+
   const queryStr: any = {};
 
   searchParams.forEach((value, key) => {
