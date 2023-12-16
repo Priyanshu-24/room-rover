@@ -1,10 +1,12 @@
 import Error from "./error";
 import Home from "./components/Home";
 
+export const metadata = {
+  title: "Home Page - Room Rover",
+};
+
 const getRooms = async () => {
-  const res = await fetch(`${process.env.API_URL}/api/rooms`, {
-    cache: "no-store",
-  });
+  const res = await fetch(`${process.env.API_URL}/api/rooms`);
   return res.json();
 };
 
