@@ -20,7 +20,7 @@ const Home = ({ data }: Props) => {
       <Link href="" className="text-sm my-10">
         =Back to Search
       </Link>
-      <div className="flex mt-10 gap-x-16 justify-between gap-y-32 flex-wrap">
+      <div className="flex flex-wrap mt-10 justify-between">
         {rooms?.length === 0 ? (
           <div>No Rooms</div>
         ) : (

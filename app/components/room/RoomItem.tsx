@@ -1,7 +1,14 @@
 "use client";
 
+import {
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  Image,
+} from "@nextui-org/react";
+
 import { IRoom } from "@/backend/models/room";
-import Image from "next/image";
 import Link from "next/link";
 import StarRatings from "react-star-ratings";
 
@@ -11,9 +18,9 @@ interface Props {
 
 const RoomItem = ({ room }: Props) => {
   return (
-    <>
-      <div>
-        <div>
+    <div className="w-[20%]">
+      <Card>
+        <CardHeader className="h-44 flex justify-center items-center">
           <Image
             src={
               room?.images?.length > 0
@@ -21,12 +28,13 @@ const RoomItem = ({ room }: Props) => {
                 : "/images/default_room_image.jpg"
             }
             alt={room?.name}
-            className="rounded-xl"
-            height={270}
-            width={200}
+            width={250}
           />
-
-          <h2 className="my-4 font-semibold h-10">{room?.name}</h2>
+        </CardHeader>
+        <CardBody>
+          <h2 className="my-4 font-semibold h-14 overflow-hidden">
+            {room?.name}
+          </h2>
           <div className="text-sm">
             <span className="font-semibold">{room?.pricePerNight} </span>/ night
           </div>
@@ -43,15 +51,17 @@ const RoomItem = ({ room }: Props) => {
               ({room?.numOfReviews} Reviews)
             </div>
           </div>
+        </CardBody>
+        <CardFooter>
           <Link
             href={`/rooms/${room?._id}`}
-            className="mt-3 bg-[#e61e4d] text-white font-semibold"
+            className="bg-[#e61e4d] text-white font-semibold w-full text-sm p-1 flex justify-center rounded-lg"
           >
             View Details
           </Link>
-        </div>
-      </div>
-    </>
+        </CardFooter>
+      </Card>
+    </div>
   );
 };
 
