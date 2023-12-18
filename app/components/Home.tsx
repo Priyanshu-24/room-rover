@@ -1,3 +1,4 @@
+import CustomPagination from "./layout/CustomPagination";
 import { IRoom } from "@/backend/models/room";
 import Link from "next/link";
 import RoomItem from "./room/RoomItem";
@@ -6,13 +7,13 @@ interface Props {
   data: {
     success: boolean;
     resPerPage: number;
-    filterdRoomCount: number;
+    filteredRoomsCount: number;
     rooms: IRoom[];
   };
 }
 
 const Home = ({ data }: Props) => {
-  const { resPerPage, filterdRoomCount, rooms } = data;
+  const { resPerPage, filteredRoomsCount, rooms } = data;
 
   return (
     <div className="px-20 py-10">
@@ -27,6 +28,10 @@ const Home = ({ data }: Props) => {
           rooms.map((room) => <RoomItem key={room?._id} room={room} />)
         )}
       </div>
+      <CustomPagination
+        resPerPage={resPerPage}
+        filteredRoomsCount={filteredRoomsCount}
+      />
     </div>
   );
 };
