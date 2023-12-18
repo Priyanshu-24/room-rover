@@ -13,7 +13,6 @@ interface Props {
 
 const RoomDetails = ({ data }: Props) => {
   const { room } = data;
-  console.log(room);
 
   return (
     <div className="px-20 py-10">
