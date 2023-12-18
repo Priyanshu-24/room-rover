@@ -19,3 +19,7 @@
   background-clip: padding-box;
   border-radius: 5px;
 }
+
+.thumbs-wrapper {
+  display: none;
+}

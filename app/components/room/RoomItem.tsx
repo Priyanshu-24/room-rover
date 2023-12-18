@@ -36,7 +36,8 @@ const RoomItem = ({ room }: Props) => {
             {room?.name}
           </h2>
           <div className="text-sm">
-            <span className="font-semibold">{room?.pricePerNight} </span>/ night
+            <span className="font-semibold">₹ {room?.pricePerNight} </span>/
+            night
           </div>
           <div className="flex items-center">
             <StarRatings
@@ -55,7 +56,7 @@ const RoomItem = ({ room }: Props) => {
         <CardFooter>
           <Link
             href={`/rooms/${room?._id}`}
-            className="bg-[#e61e4d] text-white font-semibold w-full text-sm p-1 flex justify-center rounded-lg"
+            className="bg-[#e61e4d] text-white font-semibold w-full text-xs p-2 flex justify-center rounded-lg hover:bg-[#e61e49b2]"
           >
             View Details
           </Link>
