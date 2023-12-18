@@ -1,7 +1,10 @@
+"use client";
+
 import CustomPagination from "./layout/CustomPagination";
 import { IRoom } from "@/backend/models/room";
 import Link from "next/link";
 import RoomItem from "./room/RoomItem";
+import { useSearchParams } from "next/navigation";
 
 interface Props {
   data: {
@@ -15,9 +18,16 @@ interface Props {
 const Home = ({ data }: Props) => {
   const { resPerPage, filteredRoomsCount, rooms } = data;
 
+  const searchParams = useSearchParams();
+  const location = searchParams.get("location");
+
   return (
     <div className="px-20 py-10">
-      <h1 className="font-semibold text-2xl">All Rooms</h1>
+      <h1 className="font-semibold text-2xl">
+        {location
+          ? `${filteredRoomsCount} rooms found in ${location}`
+          : "All Rooms"}
+      </h1>
       <Link href="" className="text-sm my-10">
         =Back to Search
       </Link>
