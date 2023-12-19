@@ -14,7 +14,15 @@ const Header = () => {
         />
         Room Rover
       </Link>
-      <div>DropDown</div>
+      <div>
+        DropDown
+        <Link
+          href="/login"
+          className="bg-[#e61e4d] font-semibold text-sm text-white rounded-lg py-2 px-4"
+        >
+          Login
+        </Link>
+      </div>
     </header>
   );
 };
