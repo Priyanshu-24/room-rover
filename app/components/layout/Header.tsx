@@ -9,13 +9,26 @@ import {
   DropdownTrigger,
   Skeleton,
 } from "@nextui-org/react";
+import { setIsAuthenticated, setUser } from "@/redux/features/userSlice";
 import { signOut, useSession } from "next-auth/react";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect } from "react";
 
 const Header = () => {
+  const dispatch = useAppDispatch();
+  const { user } = useAppSelector((state) => state.auth);
+
   const { data } = useSession();
+
+  useEffect(() => {
+    if (data) {
+      dispatch(setUser(data?.user));
+      dispatch(setIsAuthenticated(true));
+    }
+  }, [data]);
 
   const logoutHandler = () => {
     signOut();
@@ -34,9 +47,9 @@ const Header = () => {
         Room Rover
       </Link>
       <div>
-        {data?.user ? (
+        {user ? (
           <div className="flex items-center gap-2">
-            <Avatar src={data?.user?.image ? data.user.image : ""} size="sm" />
+            <Avatar src={user?.image ? user.image : ""} size="sm" />
             <Dropdown>
               <DropdownTrigger>
                 <Button
@@ -45,7 +58,7 @@ const Header = () => {
                   className="font-semibold"
                   radius="sm"
                 >
-                  {data?.user?.name}
+                  {user?.name}
                 </Button>
               </DropdownTrigger>
               <DropdownMenu>
