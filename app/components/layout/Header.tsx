@@ -62,7 +62,9 @@ const Header = () => {
                 </Button>
               </DropdownTrigger>
               <DropdownMenu>
-                <DropdownItem key="new">New file</DropdownItem>
+                <DropdownItem key="profile">
+                  <Link href="/me/update">Profile </Link>
+                </DropdownItem>
                 <DropdownItem key="copy">Copy link</DropdownItem>
                 <DropdownItem
                   key="logout"
