@@ -8,23 +8,34 @@ import {
   CardHeader,
   Input,
 } from "@nextui-org/react";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { useEffect, useState } from "react";
+import {
+  useLazyUpdateSessionQuery,
+  useUpdateProfileMutation,
+} from "@/redux/api/userAPI";
 
+import { setUser } from "@/redux/features/userSlice";
 import toast from "react-hot-toast";
-import { useAppSelector } from "@/redux/hooks";
 import { useRouter } from "next/navigation";
-import { useUpdateProfileMutation } from "@/redux/api/userAPI";
 
 const UpdateProfile = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
 
   const router = useRouter();
+  const dipatch = useAppDispatch();
 
   const { user } = useAppSelector((state) => state.auth);
 
   const [updateProfile, { isLoading, isSuccess, error }] =
     useUpdateProfileMutation();
+
+  const [updateSession, { data }] = useLazyUpdateSessionQuery();
+
+  if (data) {
+    dipatch(setUser(data?.user));
+  }
 
   useEffect(() => {
     setName(user?.name);
@@ -35,6 +46,8 @@ const UpdateProfile = () => {
     }
 
     if (isSuccess) {
+      //@ts-ignore
+      updateSession();
       router.refresh();
     }
   }, [user, isSuccess, error]);
