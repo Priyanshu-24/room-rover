@@ -27,6 +27,7 @@ const RoomItem = ({ room }: Props) => {
                 ? room.images[0].url
                 : "/images/default_room_image.jpg"
             }
+            className="aspect-[3/2] object-cover"
             alt={room?.name}
             width={250}
           />
