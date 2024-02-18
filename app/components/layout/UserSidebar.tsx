@@ -2,6 +2,9 @@
 
 import { Link, Listbox, ListboxItem } from "@nextui-org/react";
 
+import { AiOutlineProfile } from "react-icons/ai";
+import { GiConcentricCrescents } from "react-icons/gi";
+import { RiLockPasswordLine } from "react-icons/ri";
 import { useState } from "react";
 
 const UserSidebar = () => {
@@ -9,17 +12,17 @@ const UserSidebar = () => {
     {
       name: "Update Profile",
       url: "/me/update",
-      icon: "i",
+      icon: <AiOutlineProfile />,
     },
     {
       name: "Upload Avatar",
       url: "/me/upload-avatar",
-      icon: "i",
+      icon: <GiConcentricCrescents />,
     },
     {
       name: "Update Password",
       url: "/me/update-password",
-      icon: "i",
+      icon: <RiLockPasswordLine />,
     },
   ];
 
@@ -38,12 +41,12 @@ const UserSidebar = () => {
               className={item.name === activeMenuItem ? "bg-gray-200" : ""}
             >
               <Link
-                className={`w-full font-semibold text-black ${
+                className={`w-full font-semibold text-black flex items-center gap-1 ${
                   item.name === activeMenuItem ? "text-[#e61e4d]" : ""
                 }`}
                 href={item.url}
               >
-                ic) {item.name}
+                {item.icon} {item.name}
               </Link>
             </ListboxItem>
           );

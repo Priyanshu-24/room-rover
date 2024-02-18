@@ -2,6 +2,7 @@
 
 import CustomPagination from "./layout/CustomPagination";
 import { IRoom } from "@/backend/models/room";
+import { IoMdArrowBack } from "react-icons/io";
 import Link from "next/link";
 import RoomItem from "./room/RoomItem";
 import { useSearchParams } from "next/navigation";
@@ -28,8 +29,9 @@ const Home = ({ data }: Props) => {
           ? `${filteredRoomsCount} rooms found in ${location}`
           : "All Rooms"}
       </h1>
-      <Link href="" className="text-sm my-10">
-        =Back to Search
+      <Link href="/search" className="text-sm my-10 flex items-center gap-1">
+        <IoMdArrowBack />
+        Back to Search
       </Link>
       <div className="flex flex-wrap mt-10 justify-between">
         {rooms?.length === 0 ? (
